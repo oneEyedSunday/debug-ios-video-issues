@@ -67,22 +67,7 @@ export class MediaLightboxComponent implements AfterViewInit, OnDestroy, OnInit 
     this.mediaContainerRect = this.mediaContainerRef.nativeElement.getBoundingClientRect();
     this.handleMediaSelection(this.index);
 
-    this.videoRef.nativeElement.addEventListener('loadeddata', evt => {
-      if ((this.currentMedia.type || '').startsWith('video')) {
-        this.mediaContainerRef.nativeElement.classList.remove('loading');
-        const video: HTMLVideoElement = evt.target as any;
-        this.mediaContainerRect = this.mediaContainerRef.nativeElement.getBoundingClientRect();
-        this.positionCTAs(video.getBoundingClientRect(), video.videoHeight);
-        const vRect = video.getBoundingClientRect();
-        this.captionRef.nativeElement.style.top = `calc((100% + 40px) - ${vRect.top}px)`;
-      }
-    });
-
-    this.videoRef.nativeElement.addEventListener('error', () => {
-      if ((this.currentMedia.type || '').startsWith('video')) {
-        this.mediaContainerRef.nativeElement.classList.remove('loading');
-      }
-    });
+    this.handleVideoCases();
     this.imgRef.nativeElement.addEventListener('load', evt => {
       if (!(this.currentMedia.type || '').startsWith('video')) {
         this.mediaContainerRef.nativeElement.classList.remove('loading');
@@ -143,6 +128,41 @@ export class MediaLightboxComponent implements AfterViewInit, OnDestroy, OnInit 
     } else {
       this.videoRef.nativeElement.style.display = 'none';
       this.imgRef.nativeElement.style.display = 'block';
+    }
+  }
+
+  private handleVideoCases() {
+    /*
+    * Former Code - Now, dont wait for loaded events just show
+    this.videoRef.nativeElement.addEventListener('loadeddata', evt => {
+      if ((this.currentMedia.type || '').startsWith('video')) {
+        this.mediaContainerRef.nativeElement.classList.remove('loading');
+        const video: HTMLVideoElement = evt.target as any;
+        this.mediaContainerRect = this.mediaContainerRef.nativeElement.getBoundingClientRect();
+        this.positionCTAs(video.getBoundingClientRect(), video.videoHeight);
+        const vRect = video.getBoundingClientRect();
+        this.captionRef.nativeElement.style.top = `calc((100% + 40px) - ${vRect.top}px)`;
+      }
+    });
+
+    this.videoRef.nativeElement.addEventListener('error', () => {
+      if ((this.currentMedia.type || '').startsWith('video')) {
+        this.mediaContainerRef.nativeElement.classList.remove('loading');
+      }
+    });
+    */
+
+    // Fallback
+    if ((this.currentMedia.type || '').startsWith('video')) {
+      Promise.resolve()
+        .then(() => {
+          this.mediaContainerRef.nativeElement.classList.remove('loading');
+          const video = this.videoRef.nativeElement;
+          this.mediaContainerRect = this.mediaContainerRef.nativeElement.getBoundingClientRect();
+          this.positionCTAs(video.getBoundingClientRect(), video.videoHeight);
+          const vRect = video.getBoundingClientRect();
+          this.captionRef.nativeElement.style.top = `calc((100% + 40px) - ${vRect.top}px)`;
+        });
     }
   }
 

@@ -95,3 +95,8 @@ p.items--left.fourth--frame {
   width: unset;
   background-color: transparent;
 }
+
+
+video {
+  pointer-events: none;
+}
