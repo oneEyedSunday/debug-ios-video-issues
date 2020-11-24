@@ -1,1 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+
+.lightbox-modal .modal-content {
+  background-color: transparent;
+  border: none;
+  /* background-color: #4E4E5A; */
+}
+
+.lightbox-modal {
+  background-color: rgba(78, 78, 90, 0.6);
+}
+
+.lightbox-modal .modal-dialog {
+  max-width: unset !important;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+
+  .custom-modal2 .modal-dialog,
+  .lightbox-modal .modal-dialog {
+    max-width: 100%;
+  }
+
+}

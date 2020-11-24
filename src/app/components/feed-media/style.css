@@ -1,0 +1,97 @@
+:host {
+  display: block;
+  /* max-height: 40vh; */
+  /* min-height: 350px; */
+  width: 100%;
+}
+
+.multi-add-image p{
+  /* height: 50%; */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin-bottom: 0;
+  font-size: 30px;
+  background: #ffffff61;
+  color: #3a8e80;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.multi-add-image {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto;
+    grid-auto-rows: auto;
+    grid-auto-flow: dense;
+    line-height: unset !important;
+    /* max-height: 800px; */
+    /* max-height: 80vh; */
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.masonry-preitem {
+  width: 100%;
+  position: relative;
+}
+
+.masonry-item {
+  width: calc(50% - 5px);
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.masonry-item img, .masonry-preitem img {
+  width: 100%;
+}
+
+.masonry-item video, .masonry-preitem video {
+  width: 100%;
+}
+
+
+button.bad--media, div.bad--media {
+  display: none;
+}
+
+button.bad--media-remove.bad--media-remove, div.bad--media-remove.bad--media-remove {
+  top: 0;
+  right: 10px;
+  display: flex;
+}
+
+
+.create-post-custom{
+  height: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.close-custom-create {
+  height: 30px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #e4e4e4;
+}
+
+.close-custom-create i{
+  color: #616161;
+  font-size: 16px;
+}
+
+p.items--left.fourth--frame {
+  position: absolute;
+  top: 65%;
+  left: 75%;
+  height: unset;
+  width: unset;
+  background-color: transparent;
+}

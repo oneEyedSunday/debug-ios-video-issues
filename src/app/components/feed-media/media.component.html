@@ -1,0 +1,60 @@
+<div class="multi-add-image" #mediaContainer>
+  <div class="masonry-preitem d-flex" *ngIf="pItems?.length === 1">
+    <ng-container *ngFor="let media of pItems">
+    <img
+      (click)="openLightbox($event, 0)"
+      #applyAspectRatio
+      style="object-fit: contain; max-height: -webkit-fill-available;"
+      *ngIf="!(media?.contentType || media?.type)?.startsWith('video')"
+      [src]="media?.url | sanitize: 'url'"
+      onerror="this.src = '/assets/images/Media-failed-Involved.png'; this.nextElementSibling.classList.add('bad--media-remove'); this.style.height = '400px'; this.style.objectFit = 'cover'"
+      alt="post-image"
+      class="img-fluid">
+    <div class="close-custom-create position-absolute bad--media"
+    aria-label="Close"
+    onclick="this.previousElementSibling.style.display = 'none'">
+      <i class="las la-times"></i>
+    </div>
+    <video controls
+    (click)="openLightbox($event, 0)"
+    *ngIf="(media.contentType || media.type)?.startsWith('video')"
+    style="height: 360px;"
+    class="img-fluid img w-100">
+      <source [src]="media.url | sanitize: 'url'" type="video/mp4">
+    </video>
+    </ng-container>
+  </div>
+  <ngx-masonry #masonry *ngIf="showGrid && (pItems?.length > 1)"
+    (layoutComplete)="handleMasonryComplete($event)"
+    [updateLayout]="!!updateLayout"
+    [options]="masonryOpts">
+    <ng-container *ngFor="let media of pItems; let i = index">
+      <div ngxMasonryItem class="masonry-item">
+        <ng-container *ngIf="!(media?.contentType || media?.type)?.startsWith('video')">
+          <img
+          (click)="openLightbox($event, i)"
+          style="max-height: 80vh; object-fit: contain;"
+          [src]="media.url | sanitize: 'url'"
+          onerror="this.src = '/assets/images/Media-failed-Involved.png'; this.nextElementSibling.classList.add('bad--media-remove'); this.style.objectFit = 'cover'"
+          (error)="triggerReset(masonry)"
+          alt="post-image"
+          class="img-fluid w-100">
+          <div class="close-custom-create position-absolute bad--media"
+          aria-label="Close"
+          (click)="triggerReset()"
+          onclick="this.previousElementSibling.style.display = 'none'; this.style.display = 'none'">
+            <i class="las la-times"></i>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="(media?.contentType || media?.type)?.startsWith('video')">
+          <video controls
+          (click)="openLightbox($event, i)"
+          style="height: 360px;"
+          class="img-fluid img w-100">
+            <source [src]="media.url | sanitize: 'url'" type="video/mp4">
+          </video>
+        </ng-container>
+      </div>
+    </ng-container>
+  </ngx-masonry>
+</div>

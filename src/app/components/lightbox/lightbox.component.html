@@ -1,0 +1,61 @@
+<div class="wrapper" #wrapper (click)="handleWrapperClick($event)">
+  <div class="media-container" #mediaContainer>
+    <img
+    [src]="currentMedia?.url | sanitize: 'url'"
+    alt="" class="lightbox--img"
+    (click)="noop($event)" #imgRef>
+    <video controls class="img-fluid img lightbox--video"
+      (click)="noop($event)"
+      [src]="currentMedia?.url | sanitize: 'url'"
+      #videoRef>
+      <source [src]="currentMedia?.url | sanitize: 'url'" type="video/mp4">
+    </video>
+    <div class="loader-wrapper" (click)="noop($event)">
+      <div class="loader"></div>
+    </div>
+    <div class="position-absolute lightbox--close" #closeCTARef
+    (click)="close($event)">
+        <!-- <i class="las la-chevron-circle-right"></i> -->
+        <img src="/assets/images/icon/icn-circle-close@2x.png" alt="" class="lightbox--cta">
+    </div>
+    <div class="position-absolute lightbox--next" #nextCTARef
+    [ngClass]="{'d-none': !canNext}"
+    (click)="next($event)">
+        <!-- <i class="las la-circle-next"></i> -->
+        <img src="/assets/images/icon/icn-circle-next@2x.png" alt="" class="lightbox--cta">
+    </div>
+    <div class="position-absolute lightbox--previous" #previousCTARef
+    [ngClass]="{'d-none': !canPrevious}"
+    (click)="previous($event)">
+        <img src="/assets/images/icon/icn-circle-back@2x.png" alt="" class="lightbox--cta">
+    </div>
+  </div>
+  <div class="caption iq-card" #refCaption (click)="noop($event)">
+    <div class="">
+      <div class="creator--details">
+        <img class="rounded-circle user-image-50"
+          [src]="meta?.creator?.url || '/assets/images/profile.png'"
+        >
+        <div class="creator--details--meta">
+          <a class="comment--poster-name"
+          [attr.href]="'/user-view/profile-page/' + meta?.creator?.id"
+          target="_blank"
+          >{{ meta?.creator?.firstName }} {{ meta?.creator?.lastName }} posted</a>
+          <div class="creator--details--location">
+            <img class="location-image icon-image-20"
+              style="margin-right: 5px;"
+              src="/assets/images/icon/location.png">
+            <span>{{ meta?.creator?.currentCity }}, {{ meta?.creator?.currentState }}</span>
+            <span style="margin-left: 25px;">{{ meta?.post?.creationDateTime | date : 'MMM d, y' }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="post--details--wrapper">
+        <div class="position-relative mr-auto">
+          <div class="d-flex align-items-center" style="cursor: pointer;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
