@@ -5,6 +5,8 @@
     alt="" class="lightbox--img"
     (click)="noop($event)" #imgRef>
     <video controls class="img-fluid img lightbox--video"
+      webkit-playsinline
+      playsinline
       (click)="noop($event)"
       [src]="currentMedia?.url | sanitize: 'url'"
       #videoRef>
