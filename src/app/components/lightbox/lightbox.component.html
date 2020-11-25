@@ -7,6 +7,7 @@
     <video controls class="img-fluid img lightbox--video"
       webkit-playsinline
       playsinline
+      preload="metadata"
       (click)="noop($event)"
       [src]="currentMedia?.url | sanitize: 'url'"
       #videoRef>

@@ -19,6 +19,7 @@
     style="cursor: pointer;"
     (click)="openLightbox($event, 0)">
     <video controls
+    preload="metadata"
     onclick="void(0)"
     *ngIf="(media.contentType || media.type)?.startsWith('video')"
     style="height: 360px;"
@@ -55,6 +56,7 @@
           style="cursor: pointer;"
           (click)="openLightbox($event, i)">
           <video controls
+          preload="metadata"
           style="height: 360px;"
           class="img-fluid img w-100">
             <source [src]="media.url | sanitize: 'url'" type="video/mp4">

@@ -44,6 +44,9 @@ export class FeedMediaComponent implements OnInit, OnDestroy, AfterViewInit {
       if (feedItem.file) {
         feedItem.url = URL.createObjectURL(feedItem.file);
       }
+      if ((feedItem.contentType || '').startsWith('video')) {
+        feedItem.url = feedItem.url + '#t=0.1';
+      }
     });
     setTimeout(() => this.showGrid = (this.pItems || []).length > 1, 1000);
   }
