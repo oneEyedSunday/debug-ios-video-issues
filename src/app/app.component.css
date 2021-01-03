@@ -1,0 +1,9 @@
+.input--container {
+  width: 100%;
+  margin: 20px 5%;
+}
+
+form.form {
+  max-width: calc(100vw - 15%);
+  width: 100%
+}

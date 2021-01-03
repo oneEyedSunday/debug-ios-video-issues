@@ -1,5 +1,13 @@
 <div class="container">
   <p class="lead">Feed</p>
+  <div class="input--container">
+    <form class="form">
+      <div class="form-group">
+        <input type="file" class="form-control" accept="video/mp4,video/webm,video/ogg,video/quicktime"
+        (change)="handleFileInput($event.target.files)">
+      </div>
+    </form>
+  </div>
   <div *ngFor="let feedItem of feedData?.items; let postIndex = index;"
         class="iq-card iq-card-block iq-card-stretch iq-card-height">
     <div class="user-post-data">
