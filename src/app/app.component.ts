@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { tap } from 'rxjs/operators';
-import { Feed } from './interfaces/Feed';
-import { ApiService } from './services/mock-api';
 
 @Component({
   selector: 'app-root',
@@ -10,15 +7,16 @@ import { ApiService } from './services/mock-api';
 })
 export class AppComponent implements OnInit {
   title = 'ios-debug';
-  feedData: { items: Feed[]; totalCount: number };
 
-  constructor(private apiService: ApiService) {}
+  constructor() {}
 
   ngOnInit(): void {
-    this.apiService.getFeed()
-      .pipe(
-        tap((res) => this.feedData = res)
-      )
-      .subscribe();
+    window.onpageshow = function(event) {
+      console.log('On Page show: ', event);
+      if (event.persisted) {
+        console.log('Yes persisted from cache');
+          // window.location.reload()
+      }
+    };
   }
 }

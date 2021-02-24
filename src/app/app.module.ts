@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { Components } from './components';
+import * as fromContainers from './containers';
 import { SanitizePipe } from './pipes/sanitize.pipe';
 
 import { ApiService } from './services/mock-api';
@@ -17,6 +18,7 @@ import { ApiService } from './services/mock-api';
   declarations: [
     AppComponent,
     ...Components,
+    ...fromContainers.containers,
     SanitizePipe,
   ],
   imports: [
